@@ -9,7 +9,7 @@ describe('plugins:6to5', function () {
 		var plugin = require('../')();
 		fs.readFile('./test/fixtures/es6-good.js', function(err, data) {
 			assert.ifError(err);
-			plugin(data, {}, function(err, data) {
+			plugin(data, {context:{}}, function(err, data) {
 				assert.ifError(err);
 				var code = '"use strict";\n\nvar y = function (x) {\n  return x * 2;\n};';
 				assert.equal(data, code);
@@ -22,7 +22,7 @@ describe('plugins:6to5', function () {
 		var plugin = require('../')();
 		fs.readFile('./test/fixtures/es6-bad.js', function(err, data) {
 			assert.ifError(err);
-			plugin(data, {}, function(err, data) {
+			plugin(data, {context:{}}, function(err, data) {
 				assert.ok(err);
 				done();
 			});
@@ -33,7 +33,7 @@ describe('plugins:6to5', function () {
 		var plugin = require('../')();
 		fs.readFile('./test/fixtures/es6-react.js', function(err, data) {
 			assert.ifError(err);
-			plugin(data, {}, function(err, data) {
+			plugin(data, {context:{}}, function(err, data) {
 				assert.ifError(err);
 				assert.equal(data, '"use strict";\n\nexports["default"] = React.createElement("div", null);');
 				done();
@@ -46,6 +46,7 @@ describe('plugins:6to5', function () {
 		fs.readFile('./test/fixtures/es6-react.js', function(err, data) {
 			assert.ifError(err);
 			plugin(data, {
+				context: {},
 				options: {
 					modules: 'amd',
 					blacklist: ['useStrict']
@@ -59,4 +60,28 @@ describe('plugins:6to5', function () {
 		});
 	});
 
+	it('should support the time option', function (done) {
+		var plugin = require('../')({time: true});
+		fs.readFile('./test/fixtures/es6-good.js', function(err, data) {
+			assert.ifError(err);
+			var started = false,
+				happened = false,
+				time = console.time,
+				timeEnd = console.timeEnd;
+			console.time = function() {
+				started = true;
+				console.time = time;
+			};
+			console.timeEnd = function() {
+				happened = true;
+				console.timeEnd = timeEnd;
+			};
+			plugin(data, {context: {}}, function(err, data) {
+				assert.ifError(err);
+				assert.ok(data);
+				assert.ok(happened && started);
+				done();
+			});
+		});
+	});
 });

@@ -9,14 +9,25 @@ module.exports = function (options) {
 
 	return function (data, args, callback) {
 
-		var options = args.options,
+		var opts = args.options,
 			error = null,
+			name = args.context.filePath,
 			transformed;
 
+		// time this thing
+		if (options.time) {
+			console.time(name);
+		}
+
 		try {
-			transformed = to5.transform(data.toString('utf8'), options);
+			transformed = to5.transform(data.toString('utf8'), opts);
 		} catch(e) {
 			error = e;
+		}
+
+		// complete the timing
+		if (options.time) {
+			console.timeEnd(name);
 		}
 
 		callback(error, transformed && transformed.code);
