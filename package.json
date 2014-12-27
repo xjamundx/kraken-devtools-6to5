@@ -1,0 +1,34 @@
+{
+  "name": "kraken-devtools-6to5",
+  "version": "0.0.0",
+  "description": "a kraken-devtools plugin that adds es6 support using 6to5",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xjamundx/kraken-devtools-6to5"
+  },
+  "keywords": [
+    "kraken",
+    "kraken-js",
+    "6to5",
+    "es6"
+  ],
+  "author": "Jamund Ferguson <jamund@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xjamundx/kraken-devtools-6to5/issues"
+  },
+  "homepage": "https://github.com/xjamundx/kraken-devtools-6to5",
+  "devDependencies": {
+    "mocha": "^2.1.0"
+  },
+  "dependencies": {
+    "6to5": "^1.15.0"
+  }
+}
