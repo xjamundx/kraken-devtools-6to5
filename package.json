@@ -1,6 +1,6 @@
 {
   "name": "kraken-devtools-6to5",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "a kraken-devtools plugin that adds es6 support using 6to5",
   "main": "index.js",
   "directories": {
