@@ -35,25 +35,24 @@ describe('plugins:6to5', function () {
 			assert.ifError(err);
 			plugin(data, {context:{}}, function(err, data) {
 				assert.ifError(err);
-				assert.equal(data, '"use strict";\n\nexports["default"] = React.createElement("div", null);');
+				assert.equal(data, '"use strict";\n\nmodule.exports = React.createElement("div", null);');
 				done();
 			});
 		});
 	});
 
 	it('should support options (such as AMD and disabling use strict)', function (done) {
-		var plugin = require('../')();
+		var plugin = require('../')({
+			options: {
+				modules: 'amd',
+				blacklist: ['useStrict']
+			}
+		});
 		fs.readFile('./test/fixtures/es6-react.js', function(err, data) {
 			assert.ifError(err);
-			plugin(data, {
-				context: {},
-				options: {
-					modules: 'amd',
-					blacklist: ['useStrict']
-				}
-			}, function(err, data) {
+			plugin(data, {context: {}}, function(err, data) {
 				assert.ifError(err);
-				var code = 'define(["exports"], function (exports) {\n  exports["default"] = React.createElement("div", null);\n});';
+				var code = 'define(["exports", "module"], function (exports, module) {\n  module.exports = React.createElement("div", null);\n});';
 				assert.equal(data, code);
 				done();
 			});

@@ -9,7 +9,7 @@ module.exports = function (options) {
 
 	return function (data, args, callback) {
 
-		var opts = args.options,
+		var opts = options.options,
 			error = null,
 			name = args.context.filePath,
 			transformed;
