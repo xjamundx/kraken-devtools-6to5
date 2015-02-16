@@ -1,6 +1,6 @@
 {
   "name": "kraken-devtools-babel",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "a kraken-devtools plugin that adds es6 support using babel",
   "main": "index.js",
   "directories": {
