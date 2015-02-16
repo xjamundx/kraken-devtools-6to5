@@ -3,7 +3,7 @@
 var assert = require('assert'),
 	fs = require('fs');
 
-describe('plugins:6to5', function () {
+describe('plugins:babel', function () {
 
 	it('compiles to es5', function (done) {
 		var plugin = require('../')();
@@ -35,7 +35,7 @@ describe('plugins:6to5', function () {
 			assert.ifError(err);
 			plugin(data, {context:{}}, function(err, data) {
 				assert.ifError(err);
-				assert.equal(data, '"use strict";\n\nmodule.exports = React.createElement("div", null);');
+				assert.equal(data, '"use strict";\n\nvar x = React.createElement("div", null);\nmodule.exports = x;');
 				done();
 			});
 		});
@@ -52,7 +52,7 @@ describe('plugins:6to5', function () {
 			assert.ifError(err);
 			plugin(data, {context: {}}, function(err, data) {
 				assert.ifError(err);
-				var code = 'define(["exports", "module"], function (exports, module) {\n  module.exports = React.createElement("div", null);\n});';
+				var code = 'define(["exports", "module"], function (exports, module) {\n  var x = React.createElement("div", null);\n  module.exports = x;\n});';
 				assert.equal(data, code);
 				done();
 			});

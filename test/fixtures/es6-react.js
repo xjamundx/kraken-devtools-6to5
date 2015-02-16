@@ -1,1 +1,2 @@
-export default <div/>;
+var x = <div/>;
+export default x;

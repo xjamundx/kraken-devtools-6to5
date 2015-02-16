@@ -1,7 +1,7 @@
 {
-  "name": "kraken-devtools-6to5",
+  "name": "kraken-devtools-babel",
   "version": "0.1.0",
-  "description": "a kraken-devtools plugin that adds es6 support using 6to5",
+  "description": "a kraken-devtools plugin that adds es6 support using babel",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,24 +11,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/xjamundx/kraken-devtools-6to5"
+    "url": "https://github.com/xjamundx/kraken-devtools-babel"
   },
   "keywords": [
     "kraken",
     "kraken-js",
     "6to5",
+    "babel",
     "es6"
   ],
   "author": "Jamund Ferguson <jamund@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/xjamundx/kraken-devtools-6to5/issues"
+    "url": "https://github.com/xjamundx/kraken-devtools-babel/issues"
   },
-  "homepage": "https://github.com/xjamundx/kraken-devtools-6to5",
+  "homepage": "https://github.com/xjamundx/kraken-devtools-babel",
   "devDependencies": {
     "mocha": "^2.1.0"
   },
   "dependencies": {
-    "6to5": "^2.9.0"
+    "babel": "^4.0.1"
   }
 }

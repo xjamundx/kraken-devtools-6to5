@@ -1,6 +1,6 @@
 'use strict';
 
-var to5 = require('6to5');
+var babel = require('babel');
 
 module.exports = function (options) {
 
@@ -20,7 +20,7 @@ module.exports = function (options) {
 		}
 
 		try {
-			transformed = to5.transform(data.toString('utf8'), opts);
+			transformed = babel.transform(data.toString('utf8'), opts);
 		} catch(e) {
 			error = e;
 		}
